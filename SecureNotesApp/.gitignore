@@ -1,0 +1,11 @@
+# Dépendances (Le plus important)
+node_modules/
+dist/
+.angular/
+
+# Environnement (Sécurité : ne jamais partager ses clés secrètes)
+.env
+
+# Systèmes
+.DS_Store
+Thumbs.db
