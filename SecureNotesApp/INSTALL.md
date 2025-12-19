@@ -1,81 +1,74 @@
-📁 Guide d'Installation - Secure Notes App
+🚀 Guide de démarrage rapide - Secure Notes App
 
-Ce guide explique comment installer l'environnement de développement pour les trois composants du projet : Front-end, Back-end et SQL.
+Bienvenue sur le projet ! Ce document permet d'installer l'environnement complet et de s'assurer que toutes les mesures de sécurité sont opérationnelles.
 🛠 1. Prérequis
 
-Avant de commencer, assurez-vous d'avoir installé :
+Avant de commencer, assurez-vous d'avoir installé les outils suivants :
 
-    Node.js (version 22+)
+    Node.js (Version 22 ou supérieure)
 
-    Angular CLI (npm install -g @angular/cli)
+    Angular CLI : npm install -g @angular/cli
 
-    PostgreSQL 17
+    PostgreSQL 17 (Vérifiez que le service est lancé)
 
-🗄 2. Configuration de la Base de Données (sqldb)
+    Git : Configurez la gestion des fins de ligne pour Windows/Linux :
+    Bash
 
-    Ouvrez votre outil SQL (psql ou DBeaver).
+    git config --global core.autocrlf true
+
+🗄 2. Initialisation de la Base de Données
+
+    Ouvrez votre terminal SQL ou un outil comme DBeaver / pgAdmin.
 
     Créez la base de données :
     SQL
 
     CREATE DATABASE secure_notes_db;
 
-    Exécutez le script d'initialisation situé dans le projet :
+    Injectez le schéma (tables users, notes, permissions) :
 
-        Ouvrez le fichier sqlbd/schema.sql.
+        Ouvrez le fichier sqlbd/schema.sql présent dans le projet.
 
         Copiez-collez son contenu dans votre éditeur SQL et exécutez-le.
 
-        Note : Cela créera les tables users, notes et permissions.
+⚙️ 3. Setup du Back-end (API)
 
-⚙️ 3. Installation du Back-end (back)
+    Allez dans le dossier : cd back
 
-    Allez dans le dossier back :
-    Bash
+    Installez les dépendances : npm install
 
-cd back
+    Configuration des secrets (CRUCIAL) :
 
-Installez les dépendances :
-Bash
+        Créez une copie du fichier modèle : cp .env.example .env
 
-npm install
+        Ouvrez le fichier .env et remplissez vos identifiants locaux :
+        Plaintext
 
-Configuration Sécurisée (CRUCIAL) :
-
-    Copiez le fichier modèle : cp .env.example .env (ou faites un copier-coller manuel).
-
-    Modifiez le fichier .env avec votre mot de passe PostgreSQL local.
-
-    Ne jamais commiter le fichier .env sur Git.
+    DB_USER=votre_user_postgres
+    DB_PASSWORD=votre_mot_de_passe
+    DB_HOST=localhost
+    DB_PORT=5432
+    DB_NAME=secure_notes_db
+    PORT=3000
+    JWT_SECRET=une_cle_secrete_aleatoire_et_longue
 
 Testez la connexion :
 Bash
 
     node config/test-db.js
 
-💻 4. Installation du Front-end (front)
+💻 4. Setup du Front-end (Angular)
 
-    Allez dans le dossier front :
-    Bash
+    Allez dans le dossier : cd front/secure-notes-app
 
-cd front/secure-notes-app
+    Installez les dépendances : npm install
 
-Installez les dépendances Angular :
-Bash
+    Lancez le serveur de développement : ng serve
 
-npm install
+    L'interface est accessible sur : http://localhost:4200
 
-Lancez l'application :
-Bash
+🔄 5. Workflow de Développement
 
-    ng serve
-
-    L'application est disponible sur http://localhost:4200.
-
-🚀 5. Workflow de Développement
-
-    Lancer le Back : npm start (dans le dossier /back).
-
-    Lancer le Front : ng serve (dans le dossier /front).
-
-    Git : Avant de pousser votre code, vérifiez que vous ne poussez pas de fichiers sensibles (le .gitignore à la racine s'en occupe normalement).
+Pour travailler sur le projet, vous devez maintenir deux terminaux ouverts :
+un dans /back et faire node server.js
+un dans /front et faire ng serve
