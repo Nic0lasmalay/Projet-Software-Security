@@ -8,7 +8,7 @@
   <app-input-home-page type="Id" (valueChanged)="username=$event"></app-input-home-page>
   <app-input-home-page type="Password" (valueChanged)="password=$event"> </app-input-home-page>
   <button class="button-create-account" (click)="onCreateAccount()">Créer mon compte</button>
-  <button class="button-login">Se Connecter</button>
+  <button class="button-login" (click)="onLogin()">Se Connecter</button>
 
   @if (errorMessage.length!=0){
   <p class="error-message">{{ errorMessage }}</p>

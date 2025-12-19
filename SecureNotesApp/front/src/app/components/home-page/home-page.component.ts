@@ -39,7 +39,20 @@ export class HomePageComponent {
     });
   }
   onLogin(){
+    this.errorMessage="";
     this.isButtonLoginClicked = true;
+    const user ={
+      username : this.username,
+      password: this.password
+    }
+    this.authService.login(user).subscribe({
+      next:(res)=>{
+        console.log(res);
+      },
+      error:(err)=>{
+        this.errorMessage=err.error.error || "Erreur lors de la connexion";
+      }
+    })
   }
 
 

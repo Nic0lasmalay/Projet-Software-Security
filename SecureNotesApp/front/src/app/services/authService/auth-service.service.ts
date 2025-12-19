@@ -13,4 +13,7 @@ export class AuthService {
   registerUser(data:User): Observable<any> {
     return this.http.post<User>('http://localhost:3000/api/auth/register', data)
   }
+  login(data:User): Observable<any> {
+    return this.http.post<User>('http://localhost:3000/api/auth/login', data)
+  }
 }
