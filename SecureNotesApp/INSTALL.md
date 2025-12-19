@@ -70,6 +70,5 @@ Bash
 🔄 5. Workflow de Développement
 
 Pour travailler sur le projet, vous devez maintenir deux terminaux ouverts :
-Service	Emplacement	Commande	Port
-Back-end	/back	node server.js	3000
-Front-end	/front ng serve	4200
+un dans /back et faire node server.js
+un dans /front et faire ng serve
