@@ -1,0 +1,82 @@
+/* Conteneur principal centré */
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 20px;
+  gap: 1vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Titre stylisé */
+.title-home-page {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Texte de description */
+p {
+  color: #7f8c8d;
+  text-align: center;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+/* Style des boutons */
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s, background-color 0.2s;
+  margin-bottom: 15px;
+}
+
+/* Bouton principal (Se Connecter) */
+.button-login {
+  background-color: #3498db;
+  color: white;
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
+
+.button-login:hover {
+  background-color: #2980b9;
+}
+
+/* Bouton secondaire (Créer mon compte) */
+.button-create-account {
+  margin-top: 2vh;
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  border: 1px solid #bdc3c7;
+}
+
+.button-create-account:hover {
+  background-color: #bdc3c7;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Message d'erreur (Sécurité : très visible) */
+.error-message {
+  color: #e74c3c;
+  background-color: #fdeaea;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #e74c3c;
+  font-size: 0.9rem;
+  width: 100%;
+  text-align: center;
+}

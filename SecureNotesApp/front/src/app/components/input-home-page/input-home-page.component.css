@@ -1,0 +1,46 @@
+/* Conteneur pour l'espacement */
+.input-wrapper {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style de l'input lui-même */
+input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 2px solid #e0e6ed; /* Gris très clair par défaut */
+  border-radius: 10px;
+  background-color: #f9fafb;
+  color: #2c3e50;
+  transition: all 0.3s ease; /* Transition fluide pour le focus */
+  outline: none;
+  box-sizing: border-box; /* Pour que le padding ne dépasse pas */
+}
+
+/* Effet au survol (Hover) */
+input:hover {
+  border-color: #bdc3c7;
+}
+
+/* L'EFFET CRUCIAL : Le Focus (quand on clique dedans) */
+input:focus {
+  border-color: #3498db; /* Bleu "Sécurité" */
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.2); /* Halo lumineux */
+}
+
+/* Style du placeholder */
+input::placeholder {
+  color: #95a5a6;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* Petit bonus : style si l'input est en erreur (optionnel) */
+input.invalid {
+  border-color: #e74c3c;
+  background-color: #fdf2f2;
+}
