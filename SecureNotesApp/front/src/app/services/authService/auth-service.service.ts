@@ -1,11 +1,19 @@
 import { Injectable } from '@angular/core';
 import {User} from '../../model/user';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, tap} from 'rxjs';
+
+
+interface AuthResponse{
+  message :string;
+  token : string;
+  user:User;
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   constructor(private http: HttpClient) { }
@@ -13,7 +21,15 @@ export class AuthService {
   registerUser(data:User): Observable<any> {
     return this.http.post<User>('http://localhost:3000/api/auth/register', data)
   }
-  login(data:User): Observable<any> {
-    return this.http.post<User>('http://localhost:3000/api/auth/login', data)
+
+  login(data:User): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>('http://localhost:3000/api/auth/login', data).pipe(
+      tap(response =>{
+        if(response && response.token){
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('currentUser',JSON.stringify(response.user));
+        }
+      })
+    )
   }
 }

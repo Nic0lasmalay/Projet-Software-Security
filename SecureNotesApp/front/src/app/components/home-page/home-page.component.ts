@@ -48,6 +48,7 @@ export class HomePageComponent {
     this.authService.login(user).subscribe({
       next:(res)=>{
         console.log(res);
+        this.router.navigate(["notes"]);
       },
       error:(err)=>{
         this.errorMessage=err.error.error || "Erreur lors de la connexion";

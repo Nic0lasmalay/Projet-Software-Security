@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const db = require('../config/db');
+const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res) => {
     const {username,password} = req.body;
@@ -34,8 +35,14 @@ exports.login = async (req, res) => {
         if(!isMatch){
             return res.status(401).json({error:"Identifiants invalides"});
         }
+        const token = jwt.sign(
+            {userId:user.id,username:user.username},
+            process.env.JWT_SECRET,
+            {expiresIn: '24h'});
+
         res.status(200).json({
             message: 'Connexion réussie',
+            token: token,
             user: { id: user.id, username: user.username }
         })
     }catch(err){
