@@ -1,0 +1,80 @@
+/* On utilise :host pour centrer le tout sur la page */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* La "carte" qui contient le formulaire */
+.home-page {
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 35%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Le titre principal */
+.title-home-page {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+
+.home-page p:not(.error-message) {
+  color: #6c757d;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+
+app-input-home-page {
+  width: 100%;
+  display: block;
+  margin-bottom: 1.2rem;
+}
+
+/* Le bouton S'inscrire */
+.button-create-account {
+  width: 100%;
+  padding: 14px;
+  margin-top: 0.5rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Effet au survol du bouton */
+.button-create-account:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+/* Effet au clic */
+.button-create-account:active {
+  transform: translateY(0);
+}
+
+/* Le message d'erreur */
+.error-message {
+  margin-top: 1.5rem;
+  padding: 10px 15px;
+  background-color: #fdecea;
+  color: #e74c3c;
+  border-left: 4px solid #e74c3c;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-align: left;
+}

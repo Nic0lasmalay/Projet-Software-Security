@@ -23,20 +23,7 @@ export class HomePageComponent {
   constructor(private router : Router, private authService : AuthService ) { }
 
   onCreateAccount(){
-    this.errorMessage="";
-    this.isButtonCreateAccountClicked = true;
-    const user ={
-      username : this.username,
-      password: this.password
-    }
-    this.authService.registerUser(user).subscribe({
-      next:(res)=>{
-        console.log("Utilisateur créé!",res);
-      },
-      error:(err)=>{
-        this.errorMessage=err.error.error || "Erreur lors de l'inscription";
-      }
-    });
+    this.router.navigate(["account_creation"]);
   }
   onLogin(){
     this.errorMessage="";

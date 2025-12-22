@@ -1,17 +1,16 @@
 <div class="home-page">
   <div class="title-home-page">
-  Welcome to Secure Notes
-</div>
+    Inscrivez-vous sur Secure Notes
+  </div>
   <p>
     L'application qu'il vous faut pour écrire et partager des notes entre amis de manière sécurisée
   </p>
   <app-input-home-page type="Id" (valueChanged)="username=$event" id="inputId"></app-input-home-page>
   <app-input-home-page type="Password" (valueChanged)="password=$event" id="inputMdp"> </app-input-home-page>
-  <button class="button-create-account" (click)="onCreateAccount()">Vous êtes nouveau ? Inscrivez-vous !</button>
-  <button class="button-login" (click)="onLogin()">Se Connecter</button>
+  <button class="button-create-account" (click)="onCreateAccount()">S'inscrire</button>
 
   @if (errorMessage.length!=0){
-  <p class="error-message">{{ errorMessage }}</p>
+    <p class="error-message">{{ errorMessage }}</p>
   }
 </div>
 

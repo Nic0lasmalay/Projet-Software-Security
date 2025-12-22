@@ -80,3 +80,10 @@ button:active {
   width: 100%;
   text-align: center;
 }
+
+#inputId{
+  width: 80%;
+}
+#inputMdp{
+  width: 80%;
+}

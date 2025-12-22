@@ -13,7 +13,13 @@ exports.register = async (req, res) => {
             'INSERT INTO users (username,password_hash) VALUES ($1,$2) RETURNING id, username',
             [username, hashedPassword]
         );
-        res.status(201).json({message: 'Utilisateur créé',user:result.rows[0]});
+
+        const token = jwt.sign(
+            {userId: result.rows[0].id,username: result.rows[0].username},
+            process.env.JWT_SECRET,
+            {expiresIn: '24h'});
+
+        res.status(201).json({message: 'Utilisateur créé',token :token,user:result.rows[0]});
     }catch (err){
         console.log(err);
         res.status(500).json({error:'Erreur Serveur :'+err.message});
