@@ -1,1 +1,26 @@
-<p>note-page works!</p>
+<div class="note-page">
+  <aside class="note-aside">
+    <nav class="navbar">
+      <button class="button-add-note">Ajouter une note</button>
+      <button class="button-get-notes" (click)="onGetNotes()">Mes Notes</button>
+      @if (isButtonGetNotesClicked){
+        @for (note of myNotes;track note.id){
+          <h3 (click)="selectNote(note)">{{note.title}}</h3>
+        }
+      }
+    </nav>
+  </aside>
+  <main class="content">
+    @if (selectedNote.id!=0 ){
+      <input class="title-input" [(ngModel)]="selectedNote.title" placeholder="Titre de la note">
+      <textarea class="content-area"
+                [(ngModel)]="selectedNote.content"
+                placeholder="Commencez à écrire ici...">
+        </textarea>
+    } @else {
+      <textarea class="content-area">
+        Contenu Principal
+  </textarea>
+    }
+  </main>
+</div>

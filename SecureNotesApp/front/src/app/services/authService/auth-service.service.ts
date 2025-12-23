@@ -16,14 +16,15 @@ interface AuthResponse{
 
 export class AuthService {
 
+  API_URL="http://localhost:3000/api/auth";
   constructor(private http: HttpClient) { }
 
   registerUser(data:User): Observable<any> {
-    return this.http.post<User>('http://localhost:3000/api/auth/register', data)
+    return this.http.post<User>(`${this.API_URL}/register`, data)
   }
 
   login(data:User): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>('http://localhost:3000/api/auth/login', data).pipe(
+    return this.http.post<AuthResponse>(`${this.API_URL}/login`, data).pipe(
       tap(response =>{
         if(response && response.token){
           localStorage.setItem('token', response.token);
