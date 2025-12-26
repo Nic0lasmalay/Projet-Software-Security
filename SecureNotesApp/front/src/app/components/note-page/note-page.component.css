@@ -1,30 +1,246 @@
-.note-page{
+/* --- Mise en page globale --- */
+.note-page {
   position: fixed;
-  top: 10vh;
-  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7f9;
+}
+
+/* --- Barre latérale (Aside) --- */
+.note-aside {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.note-aside{
-
-
-}
-
-.navbar{
+  width: 20vw;
+  background-color: #2c3e50; /* Bleu foncé pro */
+  color: white;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  width:10%;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
 }
 
-.content{
-  position: relative;
-  left: 15vw;
-  width: 80%;
+.navbar {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 12px;
+}
+
+/* Boutons de la Sidebar */
+.button-add-note, .button-get-notes {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.button-add-note {
+  background-color: #27ae60; /* Vert pour l'action de création */
+  color: white;
+}
+
+.button-add-note:hover {
+  background-color: #219150;
+}
+
+.button-get-notes {
+  background-color: #34495e;
+  color: #ecf0f1;
+  border: 1px solid #455a64;
+}
+
+.button-get-notes:hover {
+  background-color: #455a64;
+}
+
+/* Liste des titres de notes */
+.note-aside h3 {
+  font-size: 0.95rem;
+  font-weight: 400;
+  padding: 10px 15px;
+  margin: 4px 0;
+  border-radius: 4px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Coupe le texte proprement s'il est trop long */
+  transition: background 0.2s;
+}
+
+.note-aside h3:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Zone de contenu principal (Main) --- */
+.content {
+  position: fixed;
+  left:25vw;
+  width:70%;
   height: 80%;
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style de l'éditeur (Mode modification) */
+.title-input {
+  width: 100%;
+  font-size: 2rem;
+  font-weight: bold;
+  border: none;
+  background: transparent;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.content-area {
+  width: 90%;
+  flex: 1;
+  border: none;
+  background: white;
+  padding: 40px;
+  border-radius: 2px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #34495e;
+}
+
+
+/* --- États vides et Erreurs --- */
+.content-not-available {
+  margin: auto;
+  color: #95a5a6;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
+.error-message {
+  color: #e74c3c;
+  background-color: #fdecea;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* --- Boutons d'action dans le Main --- */
+.button-register {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px 5px;
+}
+
+.button-cancel {
+  background-color: #95a5a6;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px 5px;
+}
+
+.button-delete-note {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 4px;
+  border-radius: 4px;
+  transition: transform 0.2s, background-color 0.2s;
+  line-height: 1;
+}
+
+/* Effet au survol de la poubelle uniquement */
+.button-delete-note:hover {
+  background-color: rgba(231, 76, 60, 0.2); /* Fond rouge très léger */
+  transform: scale(1.2); /* Grossit légèrement */
+}
+
+/* Optionnel : Cacher la poubelle par défaut et l'afficher au survol du h3 */
+.button-delete-note {
+  opacity: 0.4;
+}
+
+.note-aside h3:hover .button-delete-note {
+  opacity: 1;
+}
+
+.button-update-note {
+  background-color: #2ecc71; /* Un vert "succès" qui change du bleu de l'inscription */
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(46, 204, 113, 0.2); /* Ombre légère verte */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  align-self: flex-end; /* Aligne le bouton à droite si tu es en flex-direction: column */
+}
+
+/* Effet au survol */
+.button-update-note:hover {
+  background-color: #27ae60;
+  transform: translateY(-2px); /* Petit effet de soulèvement */
+  box-shadow: 0 6px 12px rgba(46, 204, 113, 0.3);
+}
+
+/* Effet au clic (pression) */
+.button-update-note:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(46, 204, 113, 0.2);
+}
+
+/* Optionnel : Si tu veux ajouter un petit emoji devant en CSS sans toucher au HTML */
+.button-update-note::before {
+  content: "💾";
+  font-size: 1.1rem;
+}
+
+.button-logout {
+  position: absolute; /* Se place par rapport au parent (.content) */
+  top: 2vh;
+  right: 2vw;
+  background-color: #fdfdfd;
+  color: #e74c3c; /* Rouge pour indiquer une action de sortie */
+  border: 1px solid #e74c3c;
+  padding: 8px 15px;
+  border-radius: 20px; /* Forme pilule très moderne */
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10; /* Pour passer devant le texte de la note */
+}
+
+.button-logout:hover {
+  background-color: #e74c3c;
+  color: white;
+  box-shadow: 0 4px 10px rgba(231, 76, 60, 0.2);
+  transform: translateY(-2px);
 }

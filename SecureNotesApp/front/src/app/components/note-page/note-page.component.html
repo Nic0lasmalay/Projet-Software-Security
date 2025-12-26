@@ -1,26 +1,41 @@
 <div class="note-page">
   <aside class="note-aside">
     <nav class="navbar">
-      <button class="button-add-note">Ajouter une note</button>
+      <button class="button-add-note" (click)="onAddNote()">Ajouter une note</button>
       <button class="button-get-notes" (click)="onGetNotes()">Mes Notes</button>
       @if (isButtonGetNotesClicked){
         @for (note of myNotes;track note.id){
-          <h3 (click)="selectNote(note)">{{note.title}}</h3>
+          <h3 (click)="selectNote(note)">{{note.title}}
+            <button class="button-delete-note" (click)="onDeleteNote(note.id)">🗑️</button>
+          </h3>
+
         }
       }
     </nav>
   </aside>
   <main class="content">
-    @if (selectedNote.id!=0 ){
+    <button class="button-logout" (click)="onLogout()">
+      Déconnexion 🚪
+    </button>
+    @if (isButtonAddNoteClicked){
+      <app-pop-up-add-note class="pop-up" (titleChanged)="newNote.title=$event" (contentChanged)="newNote.content=$event"></app-pop-up-add-note>
+      <button class="button-register" (click)="onRegisterAddNote()">Enregistrer</button>
+      <button class="button-cancel" (click)="onCancel()">Annuler</button>
+    }
+    @if (isTitleNotFound){
+      <p class="error-message">Donnez un titre</p>
+    }
+    @if (selectedNote.id!=-1 ){
       <input class="title-input" [(ngModel)]="selectedNote.title" placeholder="Titre de la note">
       <textarea class="content-area"
                 [(ngModel)]="selectedNote.content"
                 placeholder="Commencez à écrire ici...">
         </textarea>
+      <button class="button-update-note" (click)="onUpdateNote(selectedNote)">Enregistrer</button>
     } @else {
-      <textarea class="content-area">
-        Contenu Principal
-  </textarea>
+      <div class="content-not-available">
+        Aucune note sélectionné
+  </div>
     }
   </main>
 </div>

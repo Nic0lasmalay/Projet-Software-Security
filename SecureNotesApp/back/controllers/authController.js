@@ -9,6 +9,10 @@ exports.register = async (req, res) => {
     }
     try{
         const hashedPassword = await bcrypt.hash(password, 10);
+        const checking =await db.query('SELECT * FROM users WHERE username = $1',[username])
+        if(checking.rows.length > 0){
+            res.status(401).json({error:"Identifiant déjà utilisé"});
+        }
         const result = await db.query(
             'INSERT INTO users (username,password_hash) VALUES ($1,$2) RETURNING id, username',
             [username, hashedPassword]

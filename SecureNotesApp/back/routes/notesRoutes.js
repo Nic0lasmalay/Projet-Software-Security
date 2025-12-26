@@ -5,5 +5,7 @@ const authMiddleWare = require('./../middleware/authMiddleware');
 
 router.get('/', authMiddleWare,notesController.getNotes);
 router.post('/',authMiddleWare,notesController.createNote);
+router.delete('/:id',authMiddleWare,notesController.deleteNote);
+router.put('/:id',authMiddleWare,notesController.updateNote);
 
 module.exports = router;
