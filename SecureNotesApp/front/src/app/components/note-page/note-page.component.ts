@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {Note} from '../../model/note';
-import {NoteManagerService} from '../../services/noteService/note-manager.service';
+import {Invitation, NoteManagerService} from '../../services/noteService/note-manager.service';
 import {FormsModule} from '@angular/forms';
 import {PopUpAddNoteComponent} from '../pop-up-add-note/pop-up-add-note.component';
 
@@ -128,6 +128,17 @@ export class NotePageComponent {
       localStorage.removeItem('token');
       this.router.navigate(['/']);
     }
+  }
+
+  onShareNote(data:Invitation){
+    this.noteService.shareNote(data).subscribe({
+      next : value => {
+        console.log("Note partagé ",data);
+      },
+      error : err => {
+        console.log(err);
+      }
+    })
   }
 
 

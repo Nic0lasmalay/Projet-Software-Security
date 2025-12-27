@@ -3,9 +3,17 @@ import {Observable} from 'rxjs';
 import {Note} from '../../model/note';
 import {HttpClient} from '@angular/common/http';
 
+
+export interface Invitation{
+  noteId: number,
+  username: string,
+  canEdit: boolean
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class NoteManagerService {
 
   API_URL="http://localhost:3000/api/notes";
@@ -25,6 +33,10 @@ export class NoteManagerService {
 
   updateNote(note: Note): Observable<Note> {
     return this.http.put<Note>(`${this.API_URL}/${note.id}`, note);
+  }
+
+  shareNote (data:Invitation): Observable<Invitation> {
+    return this.http.post<Invitation>(`${this.API_URL}/${data.noteId}/share`, data);
   }
 
 }

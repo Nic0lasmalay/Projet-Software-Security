@@ -7,5 +7,6 @@ router.get('/', authMiddleWare,notesController.getNotes);
 router.post('/',authMiddleWare,notesController.createNote);
 router.delete('/:id',authMiddleWare,notesController.deleteNote);
 router.put('/:id',authMiddleWare,notesController.updateNote);
+router.post('/:id/share',authMiddleWare,notesController.shareNote);
 
 module.exports = router;

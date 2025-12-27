@@ -14,9 +14,9 @@ CREATE TABLE IF NOT EXISTS notes (
     locked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS permissions (
+CREATE TABLE IF NOT EXISTS note_shares (
     note_id INTEGER REFERENCES notes(id) ON DELETE CASCADE,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-    access_level VARCHAR(10) CHECK (access_level IN ('READ', 'WRITE')),
+    can_edit BOOLEAN,
     PRIMARY KEY (note_id, user_id)
 );

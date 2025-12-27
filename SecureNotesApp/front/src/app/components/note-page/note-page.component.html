@@ -31,7 +31,11 @@
                 [(ngModel)]="selectedNote.content"
                 placeholder="Commencez à écrire ici...">
         </textarea>
-      <button class="button-update-note" (click)="onUpdateNote(selectedNote)">Enregistrer</button>
+      @if (selectedNote.user_can_edit){
+        <button class="button-update-note" (click)="onUpdateNote(selectedNote)">Enregistrer</button>
+      } @else {
+        <p class="info-message">👁️ Vous consultez cette note en lecture seule.</p>
+      }
     } @else {
       <div class="content-not-available">
         Aucune note sélectionné
