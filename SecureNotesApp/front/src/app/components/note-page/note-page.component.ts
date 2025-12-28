@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {Note} from '../../model/note';
-import {Invitation, NoteManagerService} from '../../services/noteService/note-manager.service';
+import { NoteManagerService} from '../../services/noteService/note-manager.service';
 import {FormsModule} from '@angular/forms';
 import {PopUpAddNoteComponent} from '../pop-up-add-note/pop-up-add-note.component';
+import {PopUpShareNoteComponent} from '../pop-up-share-note/pop-up-share-note.component';
+import {Invitation} from '../../model/invitation';
 
 @Component({
   selector: 'app-note-page',
   standalone: true,
   imports: [
     FormsModule,
-    PopUpAddNoteComponent
+    PopUpAddNoteComponent,
+    PopUpShareNoteComponent
   ],
   templateUrl: './note-page.component.html',
   styleUrl: './note-page.component.css'
@@ -22,6 +25,7 @@ export class NotePageComponent {
   isButtonGetNotesClicked : boolean=false;
   isButtonAddNoteClicked : boolean=false;
   isTitleNotFound:boolean=false;
+  isShareModalOpen:boolean=false;
 
   selectedNote : Note={
     id:-1,
@@ -29,7 +33,14 @@ export class NotePageComponent {
     content:""
   };
 
+  invitation :Invitation={
+    noteId: -1,
+    username: "",
+    canEdit: false
+  };
+
   newNote :Note={
+    id:-1,
     title:"",
     content:""
 }
@@ -130,10 +141,12 @@ export class NotePageComponent {
     }
   }
 
-  onShareNote(data:Invitation){
-    this.noteService.shareNote(data).subscribe({
+  onShareNote(note:Note){
+    this.invitation.noteId=note.id;
+    this.noteService.shareNote(this.invitation).subscribe({
       next : value => {
-        console.log("Note partagé ",data);
+        console.log("Note partagé ",value);
+        this.isShareModalOpen=false;
       },
       error : err => {
         console.log(err);

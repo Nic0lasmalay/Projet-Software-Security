@@ -32,14 +32,27 @@
                 placeholder="Commencez à écrire ici...">
         </textarea>
       @if (selectedNote.user_can_edit){
+        <div class="button-bar">
         <button class="button-update-note" (click)="onUpdateNote(selectedNote)">Enregistrer</button>
+        <button class="button-share" (click)="isShareModalOpen = true">Partager 🔗</button>
+        </div>
       } @else {
         <p class="info-message">👁️ Vous consultez cette note en lecture seule.</p>
       }
-    } @else {
+    } @else if (selectedNote.id===-1 && !isButtonAddNoteClicked) {
       <div class="content-not-available">
         Aucune note sélectionné
-  </div>
+      </div>
+    }
+    @if(isShareModalOpen){
+    <div class="modal-overlay">
+      <app-pop-up-share-note
+      [noteTitle]="selectedNote.title"
+      (userNameChanged)="invitation.username=$event"
+      (close)="isShareModalOpen=false"
+      (share)="onShareNote(selectedNote)"
+(permissionChanged)="invitation.canEdit=$event"></app-pop-up-share-note>
+    </div>
     }
   </main>
 </div>

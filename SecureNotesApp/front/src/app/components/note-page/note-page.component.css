@@ -185,6 +185,15 @@
   opacity: 1;
 }
 
+.button-bar {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 15px;
+}
+
 .button-update-note {
   background-color: #2ecc71; /* Un vert "succès" qui change du bleu de l'inscription */
   color: white;
@@ -196,11 +205,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(46, 204, 113, 0.2); /* Ombre légère verte */
-  display: flex;
-  align-items: center;
   gap: 8px;
-  margin-top: 15px;
-  align-self: flex-end; /* Aligne le bouton à droite si tu es en flex-direction: column */
 }
 
 /* Effet au survol */
@@ -243,4 +248,29 @@
   color: white;
   box-shadow: 0 4px 10px rgba(231, 76, 60, 0.2);
   transform: translateY(-2px);
+}
+
+.button-share {
+  background-color: #9b59b6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  gap: 8px;
+  padding: 10px 25px;
+}
+
+.button-share:hover {
+  background-color: #8e44ad;
+  transform: translateY(-2px);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1000;
 }

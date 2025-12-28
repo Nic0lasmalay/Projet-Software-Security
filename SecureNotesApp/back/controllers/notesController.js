@@ -70,7 +70,7 @@ exports.shareNote = async (req,res)=>{
         const noteId = req.params.id;
         const {username,canEdit} = req.body;
 
-        const check1 = await db.query('SELECT * FROM notes WHERE owner_id=$1 AND note_id=$2',[id,noteId]);
+        const check1 = await db.query('SELECT * FROM notes WHERE owner_id=$1 AND id=$2',[id,noteId]);
 
         if(check1.rowCount===0){
             res.status(403).json({error:"Action non autorisée"})
@@ -87,7 +87,7 @@ exports.shareNote = async (req,res)=>{
             res.status(400).json({error:"Vous ne pouvez pas vous partager une note à vous même"});
         }
 
-        await db.query('INSERT INTO note_shares (note_id,user_id,can_edit) VALUES($1,$2,$3) ON CONFLICT DO UPDATE SET can_edit=$3',[noteId,userId,canEdit]);
+        await db.query('INSERT INTO note_shares (note_id,user_id,can_edit) VALUES($1,$2,$3) ON CONFLICT (note_id,user_id) DO UPDATE SET can_edit=$3',[noteId,userId,canEdit]);
 
         res.status(200).json({message:"Permission accordée à ",username});
 

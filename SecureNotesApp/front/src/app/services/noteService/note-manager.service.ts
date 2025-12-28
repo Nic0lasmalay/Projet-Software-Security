@@ -2,13 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {Note} from '../../model/note';
 import {HttpClient} from '@angular/common/http';
-
-
-export interface Invitation{
-  noteId: number,
-  username: string,
-  canEdit: boolean
-}
+import {Invitation} from '../../model/invitation';
 
 @Injectable({
   providedIn: 'root'

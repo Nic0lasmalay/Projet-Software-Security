@@ -1,1 +1,17 @@
-<p>pop-up-share-note works!</p>
+<div class="pop-up">
+  <h3>Partager la note : "{{ noteTitle }}"</h3>
+
+  <input type="text"
+         class="pop-up-input"
+         placeholder="Nom de l'utilisateur avec qui partager"
+         (input)="onUserChange($event)">
+
+  <div class="pop-up-actions">
+    <button class="button-cancel" (click)="close.emit()">Annuler</button>
+    <button class="button-register" (click)="share.emit()">Partager 🔗</button>
+    <select id="permission" class="pop-up-select" (change)="onPermissionChange($event)">
+      <option [value]=false>Lecture seule 👁️</option>
+      <option [value]=true>Écriture ✍️</option>
+    </select>
+  </div>
+</div>
