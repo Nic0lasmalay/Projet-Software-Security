@@ -37,6 +37,7 @@ exports.deleteNote = async (req,res)=>{
         const noteId = req.params.id;
         const result = await db.query(`DELETE FROM notes WHERE owner_id=$1 AND id=$2 RETURNING *`,[id,noteId]);
         if (result.rowCount === 0) {
+            console.log(result);
             return res.status(404).json({ error: "Note non trouvée ou non autorisée" });
         }
         res.status(200).json(result.rows);

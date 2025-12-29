@@ -21,7 +21,7 @@ import {AuthService} from '../../services/authService/auth-service.service';
 })
 export class NotePageComponent {
 
-  constructor(private router: Router,private noteService:NoteManagerService,private authService: AuthService) {
+  constructor(private router: Router, private noteService:NoteManagerService, protected authService: AuthService) {
   }
   isButtonGetNotesClicked : boolean=false;
   isButtonAddNoteClicked : boolean=false;
@@ -91,6 +91,7 @@ export class NotePageComponent {
         this.selectedNote={id:-1,title:"",content:""};
       },
       error:(err)=>{
+        console.log(id);
         console.log(err);
       }
     })
@@ -126,6 +127,7 @@ export class NotePageComponent {
       next: res=>{
         console.log("Update Note :", note.title);
         this.selectedNote.version = res.version;
+        alert("✅ : Note enregistrée !");
       },
       error:(err)=>{
         console.log("Erreur lors de l'update de la note : ", err);

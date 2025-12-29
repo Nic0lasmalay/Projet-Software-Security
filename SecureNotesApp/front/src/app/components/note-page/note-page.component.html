@@ -6,7 +6,9 @@
       @if (isButtonGetNotesClicked){
         @for (note of myNotes;track note.id){
           <h3 (click)="selectNote(note)">{{note.title}}
-            <button class="button-delete-note" (click)="onDeleteNote(note.id)">🗑️</button>
+            @if(note.owner_id===this.authService.getUserIdFromToken()){
+              <button class="button-delete-note" (click)="onDeleteNote(note.id)">🗑️</button>
+            }
           </h3>
 
         }

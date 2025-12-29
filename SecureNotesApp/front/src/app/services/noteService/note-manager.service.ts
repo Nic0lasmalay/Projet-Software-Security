@@ -10,7 +10,7 @@ import {Invitation} from '../../model/invitation';
 
 export class NoteManagerService {
 
-  API_URL="http://localhost:3000/api/notes";
+  API_URL="http://localhost:8080/api/notes";
   constructor(private http: HttpClient) { }
 
   getNotes(): Observable<Note[]> {
