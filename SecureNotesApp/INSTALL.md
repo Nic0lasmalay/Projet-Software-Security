@@ -17,6 +17,17 @@ Bienvenue sur le projet ! Ce document permet d'installer l'environnement complet
 3.  Installez le proxy de basculement : `npm install http-proxy`
 4.  Configurez le fichier `.env` avec vos identifiants PostgreSQL et une clé `JWT_SECRET`.
 
+Créez une copie du fichier modèle : cp .env.example .env
+Ouvrez le fichier .env et remplissez vos identifiants locaux :
+
+    DB_USER=votre_user_postgres
+    DB_PASSWORD=votre_mot_de_passe
+    DB_HOST=localhost
+    DB_PORT=5432
+    DB_NAME=secure_notes_db
+    PORT=3000
+    JWT_SECRET=une_cle_secrete_aleatoire_et_longue
+
 ## 💻 4. Setup du Front-end (Angular)
 1.  Allez dans le dossier : `cd front/secure-notes-app`
 2.  Installez les dépendances : `npm install`
