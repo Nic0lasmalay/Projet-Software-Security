@@ -4,19 +4,19 @@ Ce projet est une application web de gestion de notes textuelles personnelles, c
 
 🚀 Fonctionnalités Principales
 
-    Stockage Personnel Isolé : Chaque utilisateur peut créer, lire, modifier et supprimer ses propres notes de manière sécurisée.
+Stockage Personnel Isolé : Chaque utilisateur peut créer, lire, modifier et supprimer ses propres notes de manière sécurisée.
 
-    Isolation des Données : Un utilisateur ne peut en aucun cas accéder aux notes d'un autre utilisateur sans autorisation explicite.
+Isolation des Données : Un utilisateur ne peut en aucun cas accéder aux notes d'un autre utilisateur sans autorisation explicite.
 
-    Partage Collaboratif :
+Partage Collaboratif :
 
-        Mode Lecture seule : Partage d'une note sans droit de modification.
+Mode Lecture seule : Partage d'une note sans droit de modification.
 
-        Mode Lecture/Écriture : Partage permettant la modification collaborative.
+Mode Lecture/Écriture : Partage permettant la modification collaborative.
 
-    Gestion des Conflits (Locked Mode) : Pour garantir l'intégrité, l'édition simultanée est protégée par un mécanisme de verrouillage (Optimistic Locking) afin d'éviter l'écrasement accidentel de données.
+Gestion des Conflits (Locked Mode) : Pour garantir l'intégrité, l'édition simultanée est protégée par un mécanisme de verrouillage (Optimistic Locking) afin d'éviter l'écrasement accidentel de données.
 
-    Résilience du Stockage : Architecture conçue pour fonctionner sur deux serveurs répliquant le stockage des données afin d'assurer une haute disponibilité.
+Résilience du Stockage : Architecture conçue pour fonctionner sur deux serveurs répliquant le stockage des données afin d'assurer une haute disponibilité.
 
 🛡️ Ingénierie de la Sécurité
 
@@ -26,7 +26,7 @@ Security User Stories (SU)
 
 Nous avons utilisé des Security User Stories pour capturer et raffiner nos exigences de protection:
 
-    SU-Authentification : Utilisation de jetons JWT pour garantir que seul un utilisateur authentifié accède au système.
+SU-Authentification : Utilisation de jetons JWT pour garantir que seul un utilisateur authentifié accède au système.
 
 SU-Autorisation : Contrôle strict des accès au niveau de la base de données SQL pour empêcher l'accès non autorisé.
 
@@ -36,9 +36,9 @@ SU-Disponibilité : Architecture logicielle Stateless permettant la réplication
 
 🏗️ Architecture Technique
 
-    Frontend : Angular (Application Single Page) offrant une interface utilisateur réactive.
+Frontend : Angular (Application Single Page) offrant une interface utilisateur réactive.
 
-    Backend : Serveur Node.js (Stateless) utilisant des middlewares de sécurité pour la validation des requêtes.
+Backend : Serveur Node.js (Stateless) utilisant des middlewares de sécurité pour la validation des requêtes.
 
 Base de données : SQL (PostgreSQL) assurant l'intégrité transactionnelle et la persistance des données.
 
@@ -48,8 +48,8 @@ Sécurité des échanges : Toutes les communications sont authentifiées via JWT
 
 Conformément à la phase de construction du processus agile sécurisé, l'application a subi des tests de validation spécifiques :
 
-    Tests d'Accès : Vérification que l'accès à l'ID d'une note appartenant à autrui est bloqué par le serveur (403 Forbidden).
+Tests d'Accès : Vérification que l'accès à l'ID d'une note appartenant à autrui est bloqué par le serveur (403 Forbidden).
 
-    Tests de Concurrence : Validation que deux éditeurs ne peuvent pas écraser leurs changements respectifs grâce au verrouillage de version (409 Conflict).
+Tests de Concurrence : Validation que deux éditeurs ne peuvent pas écraser leurs changements respectifs grâce au verrouillage de version (409 Conflict).
 
-    Tests de Résilience : Démonstration que le serveur peut être répliqué sans perte de session utilisateur grâce à l'architecture sans état.
+Tests de Résilience : Démonstration que le serveur peut être répliqué sans perte de session utilisateur grâce à l'architecture sans état.
