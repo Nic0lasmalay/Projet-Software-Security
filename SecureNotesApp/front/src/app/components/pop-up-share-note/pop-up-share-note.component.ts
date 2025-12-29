@@ -22,7 +22,7 @@ export class PopUpShareNoteComponent {
   }
   onPermissionChange(event:Event) {
     const value = (event.target as HTMLInputElement).value;
-    this.userNameChanged.emit(value);
+    this.permissionChanged.emit(value==='true');
 
   }
 }

@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {Note} from '../../model/note';
-import { NoteManagerService} from '../../services/noteService/note-manager.service';
+import {NoteManagerService} from '../../services/noteService/note-manager.service';
 import {FormsModule} from '@angular/forms';
 import {PopUpAddNoteComponent} from '../pop-up-add-note/pop-up-add-note.component';
 import {PopUpShareNoteComponent} from '../pop-up-share-note/pop-up-share-note.component';
 import {Invitation} from '../../model/invitation';
+import {AuthService} from '../../services/authService/auth-service.service';
 
 @Component({
   selector: 'app-note-page',
@@ -20,7 +21,7 @@ import {Invitation} from '../../model/invitation';
 })
 export class NotePageComponent {
 
-  constructor(private router: Router,private noteService:NoteManagerService) {
+  constructor(private router: Router,private noteService:NoteManagerService,private authService: AuthService) {
   }
   isButtonGetNotesClicked : boolean=false;
   isButtonAddNoteClicked : boolean=false;
@@ -42,7 +43,9 @@ export class NotePageComponent {
   newNote :Note={
     id:-1,
     title:"",
-    content:""
+    content:"",
+    user_can_edit:true,
+    version: 1
 }
 ;
   myNotes : Note[]=[];
@@ -76,6 +79,7 @@ export class NotePageComponent {
       id:-1,
       content:"",
       title:"",
+      version:1
     }
   }
 
@@ -101,7 +105,8 @@ export class NotePageComponent {
     }
     this.noteService.addNote(this.newNote).subscribe({
       next: res =>{
-        console.log("Note ajouté : ",res.title);
+        this.myNotes.unshift(res)
+        console.log("Note ajouté : ",res);
       },
       error: err => {
         console.log("Erreur lors de l'ajout de la note : ", err);
@@ -118,17 +123,29 @@ export class NotePageComponent {
 
   onUpdateNote(note:Note){
     this.noteService.updateNote(note).subscribe({
-      next: note=>{
+      next: res=>{
         console.log("Update Note :", note.title);
+        this.selectedNote.version = res.version;
       },
       error:(err)=>{
-        console.log(note);
         console.log("Erreur lors de l'update de la note : ", err);
+        if (err.status === 409) {
+          alert("⚠️ Conflit de modification ! Une autre personne a enregistré cette note pendant que vous l'éditiez. Veuillez copier vos changements et rafraîchir la page.");
+        } else {
+          alert("Erreur lors de l'enregistrement.");
+        }
       }
     });
   }
   selectNote(note:Note){
     this.isButtonAddNoteClicked=false;
+    let isOwner = false;
+    if(this.authService.getUserIdFromToken()===note.owner_id){
+      isOwner = true;
+    }
+    if(isOwner){
+      note.user_can_edit = true;
+    }
     this.selectedNote = note;
     console.log("Note sélectionné : ",this.selectedNote);
   }
@@ -149,6 +166,7 @@ export class NotePageComponent {
         this.isShareModalOpen=false;
       },
       error : err => {
+        console.log("Invitattion envoyé : ",this.invitation)
         console.log(err);
       }
     })

@@ -51,11 +51,15 @@ exports.updateNote = async (req,res)=>{
     try{
         const id = req.auth.userId;
         const noteId = req.params.id;
-        const {title,content} = req.body;
-        const result = await db.query('UPDATE notes SET title = $1, content =$2 WHERE owner_id=$3 AND id=$4 RETURNING *',[title,content,id,noteId]);
+        const {title,content,version} = req.body;
+        const result = await db.query('UPDATE notes SET title = $1, content =$2, version = version + 1 WHERE id=$4 AND version = $5 AND (owner_id=$3 OR EXISTS (SELECT 1 FROM note_shares WHERE note_id=$4 AND user_id=$3 AND can_edit=true)) RETURNING *',[title,content,id,noteId,version]);
 
         if (result.rowCount === 0) {
-            return res.status(404).json({ error: "Note non trouvée ou non autorisée" });
+            const checkExist = await db.query('SELECT * FROM notes WHERE id = $1',[noteId]);
+            if(checkExist.rowCount>0 && checkExist.rows[0].version!==version){
+                return res.status(409).json({ error: "Conflit : La note a été modifiée par quelqu'un d'autre." });
+            }
+            else return res.status(403).json({ error: "Action non autorisée ou note introuvable." });
         }
         res.status(200).json(result.rows[0]);
     }catch (err){

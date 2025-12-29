@@ -26,10 +26,11 @@
       <p class="error-message">Donnez un titre</p>
     }
     @if (selectedNote.id!=-1 ){
-      <input class="title-input" [(ngModel)]="selectedNote.title" placeholder="Titre de la note">
+      <input class="title-input" [(ngModel)]="selectedNote.title" placeholder="Titre de la note" [readonly]=!selectedNote.user_can_edit>
       <textarea class="content-area"
                 [(ngModel)]="selectedNote.content"
-                placeholder="Commencez à écrire ici...">
+                placeholder="Commencez à écrire ici..."
+                [readonly]=!selectedNote.user_can_edit>
         </textarea>
       @if (selectedNote.user_can_edit){
         <div class="button-bar">

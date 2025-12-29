@@ -8,10 +8,7 @@ CREATE TABLE IF NOT EXISTS notes (
     id SERIAL PRIMARY KEY,
     owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
     title VARCHAR(255) NOT NULL,
-    content TEXT,
-    is_locked BOOLEAN DEFAULT FALSE,
-    locked_by INTEGER REFERENCES users(id),
-    locked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    content TEXT
 );
 
 CREATE TABLE IF NOT EXISTS note_shares (
@@ -20,3 +17,5 @@ CREATE TABLE IF NOT EXISTS note_shares (
     can_edit BOOLEAN,
     PRIMARY KEY (note_id, user_id)
 );
+
+ALTER TABLE notes ADD COLUMN version INTEGER DEFAULT 1;
