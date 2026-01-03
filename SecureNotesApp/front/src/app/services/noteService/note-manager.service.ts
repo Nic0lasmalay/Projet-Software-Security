@@ -11,8 +11,7 @@ import {environment} from '../../../environments/environment';
 
 export class NoteManagerService {
 
-  API_URL= `${environment.apiUrl}/notes
-  `;
+  API_URL= `${environment.apiUrl}/notes`;
 
   constructor(private http: HttpClient) { }
 
