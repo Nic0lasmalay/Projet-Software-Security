@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {User} from '../../model/user';
 import {HttpClient} from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
-
+import {environment} from '../../../environments/environment';
 
 interface AuthResponse{
   message :string;
@@ -16,7 +16,7 @@ interface AuthResponse{
 
 export class AuthService {
 
-  API_URL = "http://localhost:8080/api/auth";
+  API_URL = `${environment.apiUrl}/auth`;
 
   constructor(private http: HttpClient) {
   }

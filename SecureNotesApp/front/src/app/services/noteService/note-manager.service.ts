@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {Note} from '../../model/note';
 import {HttpClient} from '@angular/common/http';
 import {Invitation} from '../../model/invitation';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,9 @@ import {Invitation} from '../../model/invitation';
 
 export class NoteManagerService {
 
-  API_URL="http://localhost:8080/api/notes";
+  API_URL= `${environment.apiUrl}/notes
+  `;
+
   constructor(private http: HttpClient) { }
 
   getNotes(): Observable<Note[]> {
