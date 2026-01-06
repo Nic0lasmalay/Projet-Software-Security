@@ -1,6 +1,6 @@
 📝 Gestionnaire de Notes Sécurisé (Groupe 1)
 
-Ce projet est une application web de gestion de notes textuelles personnelles, conçue pour offrir un stockage résilient et une sécurité rigoureuse conformément aux principes du développement logiciel "acceptablement sécurisé".
+Ce projet est une application web de gestion de notes textuelles personnelles, conçue pour offrir un stockage résilient et une sécurité rigoureuse.
 
 🚀 Fonctionnalités Principales
 
@@ -14,7 +14,7 @@ Mode Lecture seule : Partage d'une note sans droit de modification.
 
 Mode Lecture/Écriture : Partage permettant la modification collaborative.
 
-Gestion des Conflits (Locked Mode) : Pour garantir l'intégrité, l'édition simultanée est protégée par un mécanisme de verrouillage (Optimistic Locking) afin d'éviter l'écrasement accidentel de données.
+Gestion des Conflits (Locked Mode) : L'édition simultanée est protégée par un mécanisme de verrouillage (Optimistic Locking) afin d'éviter l'écrasement accidentel de données.
 
 Résilience du Stockage : Architecture conçue pour fonctionner sur deux serveurs répliquant le stockage des données afin d'assurer une haute disponibilité.
 
@@ -38,7 +38,7 @@ SU-Disponibilité : Architecture logicielle Stateless permettant la réplication
 
 Frontend : Angular (Application Single Page) offrant une interface utilisateur réactive.
 
-Backend : Serveur Node.js (Stateless) utilisant des middlewares de sécurité pour la validation des requêtes.
+Backend : Serveur Node.js utilisant des middlewares de sécurité pour la validation des requêtes.
 
 Base de données : SQL (PostgreSQL) assurant l'intégrité transactionnelle et la persistance des données.
 
