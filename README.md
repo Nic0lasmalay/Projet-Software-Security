@@ -28,7 +28,7 @@ Un fichier de configuration est requis pour le fonctionnement du backend.
 2. Vérifiez la présence du fichier .env. Si absent, créez-le à partir de .env.example.
 
 3. Modifiez les variables suivantes selon vos identifiants PostgreSQL locaux :
-   `DB_USER=postgres
+   `DB_USER=votre_user_postgres
    DB_PASSWORD=votre_mot_de_passe
    DB_HOST=localhost
    DB_PORT=5432
