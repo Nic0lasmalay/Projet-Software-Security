@@ -30,12 +30,13 @@ Un fichier de configuration est requis pour le fonctionnement du backend.
    `cp .env.example .env`
 
 3. Modifiez les variables suivantes selon vos identifiants PostgreSQL locaux dans le fichier .env de cette manière :
-   `DB_USER=votre_user_postgres
-   DB_PASSWORD=votre_mot_de_passe
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_NAME=secure_notes_db
-   JWT_SECRET=votre_cle_secrete_jwt`
+
+         DB_USER=votre_user_postgres
+         DB_PASSWORD=votre_mot_de_passe
+         DB_HOST=localhost
+         DB_PORT=5432
+         DB_NAME=secure_notes_db
+         JWT_SECRET=votre_cle_secrete_jwt
 
 ## 🚀 4. Lancement de l'Application
 
