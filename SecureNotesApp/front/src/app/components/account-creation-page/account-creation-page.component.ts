@@ -30,7 +30,6 @@ export class AccountCreationPageComponent {
     }
     this.authService.registerUser(user).subscribe({
       next:(res)=>{
-        console.log("Utilisateur créé!",res);
         localStorage.setItem('token',res.token);
         this.router.navigate(["notes"]);
       },
