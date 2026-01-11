@@ -57,23 +57,23 @@ Pour automatiser le déploiement de l'architecture résiliente, un script de lan
 
 Pour tester la robustesse du système, vous pouvez effectuer les scénarios suivants :
 
- 1. Disponibilité (Résilience) :
+ 1. **Disponibilité (Résilience)** :
 
-     Fermez la fenêtre du terminal Serveur 3000.
+     * Fermez la fenêtre du terminal Serveur 3000.
 
-     Utilisez l'application (ajout/consultation de notes). Le Load Balancer redirigera automatiquement le trafic vers le serveur 3001 sans interruption.
+     * Utilisez l'application (ajout/consultation de notes). Le Load Balancer redirigera automatiquement le trafic vers le serveur 3001 sans interruption.
 
- 2. Intégrité (Locked Mode) :
+ 2. **Intégrité (Locked Mode)** :
 
-     Ouvrez la même note dans deux onglets différents du navigateur.
+     * Ouvrez la même note dans deux onglets différents du navigateur.
 
-     Modifiez et enregistrez la note dans le premier onglet.
+     * Modifiez et enregistrez la note dans le premier onglet.
 
-     Tentez d'enregistrer une modification dans le second onglet : une erreur de conflit (409) doit apparaître.
+     * Tentez d'enregistrer une modification dans le second onglet : une erreur de conflit (409) doit apparaître.
 
- 3. Confidentialité (Contrôle d'Accès) :
+ 3. **Confidentialité (Contrôle d'Accès)** :
 
-     Connectez-vous avec deux utilisateurs différents.
+     * Connectez-vous avec deux utilisateurs différents.
 
-     Vérifiez qu'il est impossible de consulter ou supprimer l'ID d'une note appartenant à un autre utilisateur (Erreur 404).
+     * Vérifiez qu'il est impossible de consulter ou supprimer l'ID d'une note appartenant à un autre utilisateur (Erreur 404).
 
