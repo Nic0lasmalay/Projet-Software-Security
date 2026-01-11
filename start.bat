@@ -66,7 +66,7 @@ start "LOAD_BALANCER" cmd /k "cd SecureNotesApp\back && title LOAD_BALANCER && n
 
 echo Terminal D : Frontend Angular (Port 4200)
 echo [+] Compilation Angular en cours (Veuillez patienter)...
-start "FRONTEND_ANGULAR" cmd /k "cd SecureNotesApp\front && title ANGULAR_FRONT && ng serve"
+start "FRONTEND_ANGULAR" cmd /k "cd SecureNotesApp\front && title ANGULAR_FRONT && npm start"
 
 :: --- RECAPITULATIF FINAL ---
 echo.

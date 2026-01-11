@@ -20,22 +20,25 @@ export class AccountCreationPageComponent {
   password:string="";
   username:string="";
   errorMessage:string="";
+  errorDetails: string[] = [];
 
 
   onCreateAccount(){
-    this.errorMessage="";
-    const user ={
-      username : this.username,
-      password: this.password
-    }
+    this.errorMessage = "";
+    this.errorDetails = [];
+
+    const user = { username: this.username, password: this.password };
+
     this.authService.registerUser(user).subscribe({
-      next:(res)=>{
-        localStorage.setItem('token',res.token);
+      next: (res) => {
+        localStorage.setItem('token', res.token);
         this.router.navigate(["notes"]);
       },
-      error:(err)=>{
-        this.errorMessage=err.error.error || "Erreur lors de l'inscription";
+      error: (err) => {
+        this.errorMessage = err.error?.error || "Erreur lors de l'inscription";
+        this.errorDetails = err.error?.details || [];
       }
     });
   }
+
 }

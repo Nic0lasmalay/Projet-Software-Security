@@ -4,10 +4,41 @@ const db = require('../config/db');
 const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res) => {
-    console.log("Valeur de signupSchema :", signupSchema);
-    const { error } = signupSchema.validate(req.body);
+    const { error } = signupSchema.validate(req.body, { abortEarly: false });
+
     if (error) {
-        return res.status(400).json({ error: error.details[0].message });
+        console.log(error.details);
+        const details = error.details.map((d) => {
+            // cas "min 8"
+            if (d.type === 'string.min') {
+                return "Le mot de passe doit faire au moins 8 caractères.";
+            }
+
+            // cas "pattern name" (lowercase/uppercase/digit/special)
+            if (d.type === 'string.pattern.name') {
+                switch (d.context.name) {
+                    case 'lowercase':
+                        return "Le mot de passe doit contenir au moins 1 minuscule (a-z).";
+                    case 'uppercase':
+                        return "Le mot de passe doit contenir au moins 1 majuscule (A-Z).";
+                    case 'digit':
+                        return "Le mot de passe doit contenir au moins 1 chiffre (0-9).";
+                    case 'special':
+                        return "Le mot de passe doit contenir au moins 1 caractère spécial (@$!%*?&).";
+                    default:
+                        return "Le mot de passe ne respecte pas le format attendu.";
+                }
+            }
+
+            // fallback (autres erreurs possibles)
+            return d.message;
+        });
+        const uniqueDetails = [...new Set(details)];
+
+        return res.status(400).json({
+            error: "Mot de passe invalide",
+            details: uniqueDetails
+        });
     }
 
     const {username,password} = req.body;
