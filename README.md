@@ -18,3 +18,35 @@ Avant de commencer, assurez-vous d'avoir installé les outils suivants :
    ```sql
    CREATE DATABASE secure_notes_db;
 2.  Injectez le schéma présent dans `sqlbd/schema.sql` (contient les tables et la colonne `version` nécessaire au **Locked Mode**).
+
+## ⚙️ 3. Configuration de l'Environnement (.env)
+
+Un fichier de configuration est requis pour le fonctionnement du backend.
+
+1. Allez dans le dossier back/.
+
+2. Vérifiez la présence du fichier .env. Si absent, créez-le à partir de .env.example.
+
+3. Modifiez les variables suivantes selon vos identifiants PostgreSQL locaux :
+   `DB_USER=postgres
+   DB_PASSWORD=votre_mot_de_passe
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_NAME=secure_notes_db
+   JWT_SECRET=votre_cle_secrete_jwt`
+
+## 🚀 4. Lancement de l'Application
+
+Pour automatiser le déploiement de l'architecture résiliente, un script de lancement est fourni à la racine du projet.
+
+1. Double-cliquez sur le fichier : start-project.bat.
+
+2. Ce script va ouvrir automatiquement 4 terminaux :
+
+     * Serveur A (Port 3000) : Instance backend primaire.
+
+     * Serveur B (Port 3001) : Instance de secours (Réplication).
+
+     * Load Balancer (Port 8080) : Point d'entrée unique gérant le basculement.
+
+     * Angular Frontend : Interface accessible sur http://localhost:4200.
