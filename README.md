@@ -17,3 +17,4 @@ Avant de commencer, assurez-vous d'avoir installé les outils suivants :
 1. **Création de la base** : Ouvrez votre terminal SQL ou un outil comme pgAdmin et exécutez :
    ```sql
    CREATE DATABASE secure_notes_db;
+2.  Injectez le schéma présent dans `sqlbd/schema.sql` (contient les tables et la colonne `version` nécessaire au **Locked Mode**).
