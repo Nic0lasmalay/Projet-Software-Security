@@ -39,7 +39,7 @@ Un fichier de configuration est requis pour le fonctionnement du backend.
 
 Pour automatiser le déploiement de l'architecture résiliente, un script de lancement est fourni à la racine du projet.
 
-1. Double-cliquez sur le fichier : start-project.bat.
+1. Double-cliquez sur le fichier : start.bat.
 
 2. Ce script va ouvrir automatiquement 4 terminaux :
 
