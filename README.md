@@ -25,9 +25,11 @@ Un fichier de configuration est requis pour le fonctionnement du backend.
 
 1. Allez dans le dossier back/.
 
-2. Vérifiez la présence du fichier .env. Si absent, créez-le à partir de .env.example.
+2. Vérifiez la présence du fichier .env. Si absent, créez-le à partir de .env.example :
 
-3. Modifiez les variables suivantes selon vos identifiants PostgreSQL locaux :
+   `cp .env.example .env`
+
+3. Modifiez les variables suivantes selon vos identifiants PostgreSQL locaux dans le fichier .env de cette manière :
    `DB_USER=votre_user_postgres
    DB_PASSWORD=votre_mot_de_passe
    DB_HOST=localhost
